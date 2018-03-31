@@ -1,0 +1,18 @@
+{
+  "name": "moh-errors",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "ava --verbose"
+  },
+  "repository": "git@github.com:mohjs/moh-errors.git",
+  "author": "Oliver.W <ole3021@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "http-errors": "^1.6.3",
+    "raven": "^2.4.2"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0"
+  }
+}
