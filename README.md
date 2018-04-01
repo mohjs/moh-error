@@ -11,7 +11,7 @@ Unify of common structure like Error.
 ## Usage
 
 ```javascript
-const { MohError, initMohError, listMohErrors }
+const { MohError, initMohError, listMohErrors } = require('moh-errors')
 
 initMohError() // Init required hadnlers, like sentry and `uncaughtException` handler
 
