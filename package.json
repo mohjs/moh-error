@@ -1,6 +1,6 @@
 {
   "name": "moh-errors",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
@@ -23,7 +23,10 @@
     "singleQuote": true
   },
   "jest": {
-    "moduleFileExtensions": ["js", "json"],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
     "rootDir": "tests",
     "testRegex": ".test.js$",
     "coverageDirectory": "../coverage"
