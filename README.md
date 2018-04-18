@@ -1,70 +1,73 @@
-# moh-unify
-Unify of common structure like Error.
+# moh-error
 
-## Feature
+The advanced http response friendly Error class (extend from Error) to handle error with more info and features.
 
-- [x] Easy to convert to a http response
-- [x] Easy to send to sentry
-- [ ] Easy to create list of errors
-- [x] Easy to add custom info
+## Features
+
+* Easy way to create advanced Error with extra info
+* Easy to transform to Http response
+* Easy to send error to sentry
+
+## Installation
+
+```bash
+# with yarn
+yarn add moh-error --save
+
+# with npm
+npm install moh-error --save
+```
 
 ## Usage
 
 ```javascript
-const { MohError, initMohError, listMohErrors } = require('moh-errors')
+const { MohError: MyError } = require('moh-error')
 
-initMohError() // Init required hadnlers, like sentry and `uncaughtException` handler
+// use like normal Error
+const error = new MyError('The error message')
 
-const httpError = new MohError('errmessage', {
-  status: 403,
-  code: 1008
-})
+// use with normal Error
+const someErr = new Error('Default Error')
+const error = new MyError(someErr)
 
-httpError.toHttp() // trans to http-error
-
-const err = new Error('system error')
-
-const httpError = new MohError(err, {
-  message: 'invalid password',
-  userInfo: {
-    username: ole3021,
-    target: www.github.com
-  }
-})
-
-const ERROR = {
-  LOGIN_ERROR: {
+// use with custom object
+const ERRORS = {
+  UNAUTH: {
     status: 401,
-    message: 'invalid to login'
+    code: 11001,
+    message: 'User not authenticated'
   }
 }
+const error = new MyError(ERRORS.UNAUTH)
 
-const templateError = new MohError(ERROR.LOGIN_ERROR, {
-  details: [{
-    messsage: 'missing username'
-  }, {
-    message: 'missing pasword'
-  }]
+// add extra info
+const loginError = new MyError('Faild to login', {
+  user: {
+    username: 'ole3021',
+    password: 'youshouldnotpass'
+  },
+  isSentry: true // will send this error to sentry
 })
 
+// add status code
+const error = new MyError('Unauthorized', 401)
+res.send(error.toHttp())
 ```
 
-### ToSentry
-1. set the sentry DSN with env variable `SENTRY_DSN`
-2. set the config `isSentry` to `true` to send the error to sentry
-3. call `initMohError()` to init the config
+### init()
 
+The method to init the lib, include [sentry](https://sentry.io/welcome/) and `unExpectedError` handling.(not necessary if not use those features.)
 
-## Best Practice
+### toHttp()
 
-### Simple error name
-Use general error type as name to category error by types
+The method to transform the error object to an response
+`mohErrorInstance.toHttp()`
 
-### Human readable message
-Use humand readable message as error message
+### isSentry
 
-### More details
-Add more details in `details` prop for multi reason (validate errors) of the reason
+Add `isSentry` prop in the create error info, will send this error to sentry.
 
-### Easy to trace
-Add any filed required for sentry or other system to trace the source and extra info of the error
+## TODO
+
+* [ ] Handle list of errors
+* [ ] Handle uncaught error
