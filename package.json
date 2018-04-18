@@ -1,5 +1,5 @@
 {
-  "name": "moh-errors",
+  "name": "moh-error",
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
@@ -7,7 +7,7 @@
     "test:cov": "jest --coverage",
     "test:watch": "jest --watchAll"
   },
-  "repository": "git@github.com:mohjs/moh-errors.git",
+  "repository": "git@github.com:mohjs/moh-error.git",
   "author": "Oliver.W <ole3021@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -23,10 +23,7 @@
     "singleQuote": true
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
+    "moduleFileExtensions": ["js", "json"],
     "rootDir": "tests",
     "testRegex": ".test.js$",
     "coverageDirectory": "../coverage"
