@@ -4,10 +4,8 @@ node_js:
   - "4"
   - "6"
   - "8"
-cache:
-  yarn: true
 notifications:
   email:
     - ole3021@gmail.com
 script:
-  - yarn test:cov
+  - yarn run test:cov
