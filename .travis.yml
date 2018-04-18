@@ -8,4 +8,4 @@ notifications:
   email:
     - ole3021@gmail.com
 script:
-  - yarn run test:cov
+  - npm run test:cov
