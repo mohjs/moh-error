@@ -1,5 +1,7 @@
 # moh-error
 
+[![Build Status](https://travis-ci.org/mohjs/moh-errors.svg?branch=master)](https://travis-ci.org/mohjs/moh-errors)
+
 The advanced http response friendly Error class (extend from Error) to handle error with more info and features.
 
 ## Features
