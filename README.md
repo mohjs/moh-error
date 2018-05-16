@@ -22,6 +22,13 @@ npm install moh-error --save
 
 ## Usage
 
+To generate a moh-error, use 1 arg or 2 args as below
+
+1 arg: `[String || Error ||Object]`
+2 args: `[String, Error]`, `[Object, StatusCode(/^[1-5][0-9][0-9]$/)]`
+
+> the first arg is error instance or error message, the second arg are custom object or status code
+
 ```javascript
 const { MohError: MyError } = require('moh-error')
 
@@ -52,7 +59,7 @@ const loginError = new MyError('Faild to login', {
 })
 
 // add status code
-const error = new MyError('Unauthorized', 401)
+const error = new MyError(new Error('Unauthorized'), 401)
 res.send(error.toHttp())
 ```
 
@@ -68,8 +75,3 @@ The method to transform the error object to an response
 ### isSentry
 
 Add `isSentry` prop in the create error info, will send this error to sentry.
-
-## TODO
-
-* [ ] Handle list of errors
-* [ ] Handle uncaught error
