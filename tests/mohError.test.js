@@ -40,13 +40,23 @@ describe('Init mohError', () => {
     expect(error.message).toBe(message)
   })
 
+  it('should return mohError with ohter Error', () => {
+    const err = new Error('original error')
+    const error = new MohError(err, { a: 'a' })
+
+    expect(error.isMohError).toBe(true)
+    expect(error.message).toBe('original error')
+    expect(error.a).toBe('a')
+  })
+
   it('should return mohError with ohter mohError', () => {
     const err = new MohError('original error', { a: 'a' })
-    const error = new MohError('new message', err)
+    const error = new MohError(err, { message: 'new message' })
 
     expect(error.isMohError).toBe(true)
     expect(error.message).toBe('new message')
     expect(error.a).toBe('a')
+    expect(error.stack).toEqual(err.stack)
   })
 })
 
@@ -98,7 +108,7 @@ describe('Init mohError with Error obj', () => {
   })
 
   it('should return mohError with default error and new message', () => {
-    const error = new MohError('new message', defaultError)
+    const error = new MohError(defaultError, { message: 'new message' })
 
     expect(error.isMohError).toBe(true)
     expect(error.message).toBe('new message')
